@@ -1,0 +1,47 @@
+name: miniaudio
+description: Miniaudio library
+version: 1.0.0
+publish_to: 'none'
+
+environment:
+  sdk: '>=2.17.0 <3.0.0'
+
+dependencies:
+  ffi: ^2.0.0
+
+dev_dependencies:
+  ffigen: ^6.0.1
+  lints: ^2.0.0
+
+ffigen: # regenerate with: dart run ffigen
+  name: 'MiniAudio'
+  description: MiniAudio Library
+  output: 'lib/src/generated_bindings.dart'
+  headers:
+    entry-points:
+      - 'native/miniaudio.h'
+  compiler-opts:
+    - '-D__STDC_VERSION__=1'
+  preamble: |
+    // ignore_for_file: non_constant_identifier_names, constant_identifier_names
+  functions:
+    exclude:
+      - _.*
+  enums:
+    exclude:
+      - _.*
+  typedefs:
+    exclude:
+      - _.*
+  structs:
+    exclude:
+      - _.*
+  unions:
+    exclude:
+      - _.*
+  macros:
+    exclude:
+      - _.*
+  globals:
+    exclude:
+      - _.*
